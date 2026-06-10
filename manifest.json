@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "RocketGoal.io Tools",
+  "version": "1.0",
+  "description": "Mods for RocketGoal.io",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://*.cloudfunctions.net/*",
+    "https://rocketgoal.io/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://rocketgoal.io/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injector.js"],
+      "matches": ["https://rocketgoal.io/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  }
+}

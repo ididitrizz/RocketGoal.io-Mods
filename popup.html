@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; }
+    
+    body { 
+      width: 360px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      padding: 0;
+      margin: 0;
+      background: linear-gradient(135deg, #0b1e36 0%, #061020 100%);
+      color: #fff;
+    }
+    
+    .main-title { 
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      color: #ffeb3b;
+      padding: 12px 12px 2px 12px;
+      text-shadow: 0 0 6px rgba(255, 235, 59, 0.3);
+    }
+    
+    .container { padding: 0 12px 12px 12px; }
+    
+    /* The Toolbar Rows Grid Layout */
+    .toolbar { 
+      display: flex; 
+      gap: 6px; 
+      margin-bottom: 6px;
+      align-items: center;
+    }
+    
+    .toolbar:last-child {
+      margin-bottom: 0;
+    }
+    
+    button { 
+      flex: 1;
+      padding: 7px 0; 
+      cursor: pointer; 
+      font-weight: bold; 
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      font-size: 12px;
+    }
+    
+    button:hover { 
+      background: #ffeb3b;
+      color: #061020;
+      border-color: #ffeb3b;
+      transform: translateY(-1px);
+    }
+    
+    button:active { 
+      transform: translateY(1px);
+    }
+    
+    select { 
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 10px; 
+      border: 1px solid #ffeb3b;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.4);
+      color: #ffeb3b;
+      cursor: pointer;
+      font-weight: bold;
+      outline: none;
+      font-size: 12px;
+    }
+    
+    select option {
+      background: #061020;
+      color: #ffeb3b;
+    }
+    
+    textarea { 
+      width: 100%; 
+      height: 52px;
+      padding: 8px; 
+      resize: none; 
+      border: 1px solid #ffeb3b;
+      border-radius: 8px;
+      font-size: 13px;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      outline: none;
+      font-weight: bold;
+      transition: border 0.3s ease;
+    }
+    
+    textarea::placeholder {
+      color: rgba(255, 235, 59, 0.4);
+    }
+    
+    textarea:focus {
+      border-color: #ffffff;
+      box-shadow: 0 0 8px rgba(255, 235, 59, 0.3);
+    }
+    
+    #preview-name { 
+      background: rgba(0, 0, 0, 0.6);
+      border-left: 4px solid #ffeb3b;
+      border-radius: 4px;
+      padding: 8px 10px; 
+      min-height: 34px; 
+      font-size: 15px;
+      color: #fff;
+      word-break: break-all;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      white-space: pre-wrap;
+      display: block;
+    }
+    
+    #preview-name:empty::before {
+      content: "Preview will appear here...";
+      color: rgba(255, 255, 255, 0.4);
+      font-style: italic;
+      font-weight: normal;
+      font-size: 13px;
+    }
+    
+    .section { 
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    .section-title { 
+      font-size: 10px; 
+      font-weight: bold; 
+      color: #8da2bb;
+      text-transform: uppercase; 
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .submit-btn { 
+      width: 100%; 
+      padding: 10px 0; 
+      background: linear-gradient(90deg, #ffeb3b 0%, #fbc02d 100%);
+      color: #061020;
+      border: none; 
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(255, 235, 59, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .submit-btn:hover { 
+      background: #ffffff;
+      color: #061020;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+    }
+    
+    #status { 
+      margin-top: 6px; 
+      font-size: 12px; 
+      text-align: center; 
+      padding: 8px; 
+      border-radius: 6px;
+      display: none;
+      font-weight: bold;
+    }
+    
+    #status.success { 
+      color: #fff; 
+      background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+      display: block;
+    }
+    
+    #status.error { 
+      color: #fff; 
+      background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+      display: block;
+    }
+    
+    #status.info { 
+      color: #fff; 
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+      display: block;
+    }
+    
+    #status.processing {
+      background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+      display: block;
+    }
+    
+    details { 
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.01);
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 11px;
+    }
+    
+    details summary { 
+      cursor: pointer; 
+      font-weight: bold; 
+      color: #8da2bb;
+      user-select: none;
+      outline: none;
+    }
+    
+    details summary:hover { 
+      color: #ffeb3b;
+    }
+    
+    .guide-content { 
+      padding: 6px; 
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+      margin-top: 6px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #ffeb3b;
+      border: 1px solid rgba(255, 235, 59, 0.1);
+    }
+    
+    .guide-content p { 
+      margin: 3px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-title">🚀 Easy RocketGoal.io Nickname Changer</div>
+  <div class="container">
+    <div class="section">
+      <div class="section-title">👁️ Preview</div>
+      <div id="preview-name"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">🎨 Formatting Tools</div>
+      <div class="toolbar">
+        <div style="flex: 3;">
+          <select id="templates-select">
+            <option value="" disabled selected hidden>📥 Load Template</option>
+          </select>
+        </div>
+        <button id="btn-save-template" style="flex: 1;" title="Save current text as template">💾 Save</button>
+      </div>
+      <div class="toolbar" style="margin-top: 6px;">
+        <button id="btn-bold" title="Bold (Ctrl+B)">B</button>
+        <button id="btn-italic" title="Italic (Ctrl+I)">I</button>
+        <button id="btn-underline" title="Underline (Ctrl+U)">U</button>
+        <div style="position: relative; display: inline-block; flex: 2;">
+          <select id="select-color">
+            <option value="" disabled selected hidden>🎨 Color</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="orange">Orange</option>
+            <option value="purple">Purple</option>
+            <option value="pink">Pink</option>
+            <option value="cyan">Cyan</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="custom">Custom Color</option>
+          </select>
+          <input type="color" id="picker-color" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; pointer-events: none; z-index: 5;">
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📝 Your Nickname</div>
+      <textarea id="input-name" placeholder="Enter nickname and use buttons to add formatting..."></textarea>
+    </div>
+    <button id="btn-send" class="submit-btn">✨ Update & Reload</button>
+    <div id="status"></div>
+    <details>
+      <summary>📖 Formatting Guide & Tips</summary>
+      <div class="guide-content">
+        <p><b>&lt;b&gt;text&lt;/b&gt;</b> - Bold</p>
+        <p><i>&lt;i&gt;text&lt;/i&gt;</i> - Italic</p>
+        <p><u>&lt;u&gt;text&lt;/u&gt;</u> - Underline</p>
+        <p>&lt;color=red&gt;text&lt;/color&gt; - Colored</p>
+        <p style="margin-top: 6px; color: rgba(255, 235, 59, 0.8);"><b>Combine:</b></p>
+        <p>&lt;b&gt;&lt;color=blue&gt;Bold Blue&lt;/color&gt;&lt;/b&gt;</p>
+        <p style="margin-top: 6px; color: rgba(255, 235, 59, 0.8);"><b>Keyboard Shortcuts:</b></p>
+        <p>Ctrl+B = Bold | Ctrl+I = Italic | Ctrl+U = Underline</p>
+      </div>
+    </details>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

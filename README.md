@@ -1,7 +1,7 @@
-# $\color{yellow}{\text{RocketGoal.io Mods}}$
+# $\color{yellow}{\textsf{RocketGoal.io Mods}}$
 Mods for RocketGoal.io! Featuring advanced nickname changer, ping/FPS HUD, replay saving capabilities, account manager, and an easy stats dashboard.
 
-#### $\color{blue}{\text{How To Install:}}$
+#### $\color{blue}{\textsf{How To Install:}}$
 Open the code section of the repository. Click "Code", then click "Download ZIP".
 <img width="1365" height="597" alt="Screenshot 2026-06-10 10 55 33 AM" src="https://github.com/user-attachments/assets/be183f18-65ee-4707-813a-0a1b704a088e" />
 Then go to <chrome://extensions/>, turn on Developer Mode, and press "Load Unpacked".
@@ -11,7 +11,7 @@ Close the window that pops up when you extract the ZIP.
 Double-click on the folder with the same name. It should open to have another folder with that name. select it and click "Open".
 It should load to your extensions, and it's ready to use.
 
-#### $\color{blue}{\text{How To Use:}}$
+#### $\color{blue}{\textsf{How To Use:}}$
 ###### Nickname Changer
 Click the puzzle piece in the top right corner.
 Navigate to the extension called RocketGoal.io Tools, then click on it.
@@ -26,5 +26,5 @@ Do you have two accounts? Use this tool to sign in back and forth easily between
 ###### Stats Dashboard
 This tool is next to the accounts tool on the main menu. It will display your ranks, your records, a simplified version of your name, and more. Use this tool to keep track of your progression in-game.
 
-#### $\color{blue}{\text{Contributors:}}$:
+#### $\color{blue}{\textsf{Contributors:}}$:
 Everything by me. Thanks for the support, and please star this repository and share it with your friends. It would mean a lot to me. Thank you guys! If anyone has any ideas for improvements to this tool please reach out to me; I'd be open to trying to make it.
